@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ShopEasy - Home</title>
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/view-product.css" />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">
+                <h2>ShopEasy</h2>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html">Shop</a>
+                <a href="cart.html">Cart</a>
+            </div>
+            <div class="nav-right">
+                <div id="user-section"></div>
+                <a href="cart.html" class="cart-link">
+                    🛒
+                    <span id="cart-count" class="cart-count">0</span>
+                </a>
+            </div>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+
+        <!-- Product Detail - Fully Static -->
+        <section class="product-detail-section">
+            <div class="container">
+                <div class="detail-container">
+                    <!-- Static Product Image -->
+                    <div class="detail-image">
+                        <img
+                            src="https://picsum.photos/id/20/800/800"
+                            alt="Wireless Headphones"
+                        />
+                    </div>
+
+                    <!-- Static Product Info -->
+                    <div class="detail-info">
+                        <h1>Wireless Headphones</h1>
+                        <div class="price">$79.99</div>
+
+                        <div class="rating">
+                            ★★★★☆
+                            <span
+                                style="
+                                    font-size: 1rem;
+                                    color: #666;
+                                    margin-left: 12px;
+                                "
+                                >(128 reviews)</span
+                            >
+                        </div>
+
+                        <p>
+                            Premium noise-cancelling over-ear headphones with
+                            30-hour battery life and crystal-clear sound.
+                            Perfect for music lovers, travelers, and
+                            professionals who need focus and comfort.
+                        </p>
+
+                        <!-- Quantity -->
+                        <div class="quantity-row">
+                            <label>Quantity</label>
+                            <div class="quantity-control">
+                                <button onclick="changeQty(-1)">–</button>
+                                <input
+                                    type="text"
+                                    id="qty-input"
+                                    value="1"
+                                    readonly
+                                />
+                                <button onclick="changeQty(1)">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button onclick="addToCart(1)" class="btn-primary">
+                                Add to Cart – $79.99
+                            </button>
+                            <button
+                                onclick="window.history.back()"
+                                class="btn-secondary"
+                            >
+                                Continue Shopping
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs - Static Content -->
+                <div class="product-tabs">
+                    <div class="tabs">
+                        <div class="tab active" onclick="switchTab(0)">
+                            Description
+                        </div>
+                        <div class="tab" onclick="switchTab(1)">
+                            Specifications
+                        </div>
+                        <div class="tab" onclick="switchTab(2)">Reviews</div>
+                    </div>
+                    <div class="tab-content" id="tab-content">
+                        <p>
+                            Premium quality wireless headphones designed for
+                            everyday use. Features active noise cancellation,
+                            30-hour battery life, and ultra-soft ear cushions
+                            for all-day comfort. Connect instantly via Bluetooth
+                            5.0.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Related Products - Fully Static -->
+        <section class="related-section">
+            <div class="container">
+                <h2>You May Also Like</h2>
+                <div class="related-grid">
+                    <!-- Static Related Card 1 -->
+                    <div class="related-card" onclick="viewProduct(2)">
+                        <img
+                            src="https://picsum.photos/id/29/600/400"
+                            alt="Smart Watch Series X"
+                        />
+                        <div class="content">
+                            <h3>Smart Watch Series X</h3>
+                            <p class="price">$199.99</p>
+                            <button
+                                style="
+                                    width: 100%;
+                                    padding: 12px;
+                                    background: #0d6efd;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 12px;
+                                    font-weight: 600;
+                                    margin-top: 8px;
+                                "
+                            >
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Static Related Card 2 -->
+                    <div class="related-card" onclick="viewProduct(4)">
+                        <img
+                            src="https://picsum.photos/id/101/600/400"
+                            alt="Portable Bluetooth Speaker"
+                        />
+                        <div class="content">
+                            <h3>Portable Bluetooth Speaker</h3>
+                            <p class="price">$49.99</p>
+                            <button
+                                style="
+                                    width: 100%;
+                                    padding: 12px;
+                                    background: #0d6efd;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 12px;
+                                    font-weight: 600;
+                                    margin-top: 8px;
+                                "
+                            >
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Static Related Card 3 -->
+                    <div class="related-card" onclick="viewProduct(9)">
+                        <img
+                            src="https://picsum.photos/id/1005/600/400"
+                            alt="Floral Summer Dress"
+                        />
+                        <div class="content">
+                            <h3>Floral Summer Dress</h3>
+                            <p class="price">$39.99</p>
+                            <button
+                                style="
+                                    width: 100%;
+                                    padding: 12px;
+                                    background: #0d6efd;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 12px;
+                                    font-weight: 600;
+                                    margin-top: 8px;
+                                "
+                            >
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Static Related Card 4 -->
+                    <div class="related-card" onclick="viewProduct(10)">
+                        <img
+                            src="https://picsum.photos/id/1009/600/400"
+                            alt="Classic Denim Jacket"
+                        />
+                        <div class="content">
+                            <h3>Classic Denim Jacket</h3>
+                            <p class="price">$49.99</p>
+                            <button
+                                style="
+                                    width: 100%;
+                                    padding: 12px;
+                                    background: #0d6efd;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 12px;
+                                    font-weight: 600;
+                                    margin-top: 8px;
+                                "
+                            >
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content container">
+                <div class="footer-col">
+                    <h2 style="color: #0d6efd; margin-bottom: 12px">
+                        🛒 ShopEasy
+                    </h2>
+                    <p>
+                        Your one-stop destination for premium gadgets,
+                        accessories &amp; lifestyle products. Quality you can
+                        trust.
+                    </p>
+                    <div
+                        style="
+                            margin-top: 25px;
+                            display: flex;
+                            gap: 15px;
+                            font-size: 1.6rem;
+                        "
+                    >
+                        <span>📘</span>
+                        <span>🐦</span>
+                        <span>📸</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Shop</h3>
+                    <a href="index.html">Home</a>
+                    <a href="index.html">All Products</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="#">Deals</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Account</h3>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                    <a href="cart.html">My Orders</a>
+                    <a href="#">Wishlist</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Stay Updated</h3>
+                    <p>
+                        Join our newsletter for exclusive offers and new
+                        arrivals.
+                    </p>
+                    <div class="newsletter">
+                        <input
+                            type="email"
+                            placeholder="your@email.com"
+                            id="newsletter-email"
+                        />
+                        <button onclick="subscribeNewsletter()">Join</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom container">
+                <p>&copy; 2026 ShopEasy. All rights reserved.</p>
+                <p>Made with pure HTML • CSS • JavaScript</p>
+                <p style="color: #0d6efd">
+                    Developed By :
+                    <a
+                        style="
+                            color: white;
+                            text-decoration: none;
+                            font-weight: 700;
+                        "
+                        target="_blank"
+                        href="https://ghsresume.netlify.app"
+                        >Ghs Julian</a
+                    >
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            // Toggle Mobile Menu
+            function toggleMobileMenu() {
+                const navLinks = document.getElementById("nav-links");
+                navLinks.classList.toggle("active");
+            }
+              // Newsletter
+        window.subscribeNewsletter = function () {
+            const email = document.getElementById('newsletter-email').value.trim();
+            if (email) {
+                alert('🎉 Thank you! You are now subscribed to ShopEasy deals.');
+                document.getElementById('newsletter-email').value = '';
+            }
+        };
+
+        // Tab switching (static)
+        window.switchTab = function (index) {
+            document.querySelectorAll('.tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+            
+            const content = document.getElementById('tab-content');
+            if (index === 0) {
+                content.innerHTML = `<p>Premium quality wireless headphones designed for everyday use. Features active noise cancellation, 30-hour battery life, and ultra-soft ear cushions for all-day comfort. Connect instantly via Bluetooth 5.0.</p>`;
+            } else if (index === 1) {
+                content.innerHTML = `
+                    <ul style="list-style:none; padding:0;">
+                        <li style="padding:12px 0; border-bottom:1px solid #eee;">Battery Life: 30 hours</li>
+                        <li style="padding:12px 0; border-bottom:1px solid #eee;">Bluetooth: 5.0</li>
+                        <li style="padding:12px 0; border-bottom:1px solid #eee;">Noise Cancellation: Active</li>
+                        <li style="padding:12px 0; border-bottom:1px solid #eee;">Weight: 280g</li>
+                        <li style="padding:12px 0;">1 Year Warranty</li>
+                    </ul>`;
+            } else {
+                content.innerHTML = `
+                    <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                        <div style="background:#f8f9fa; padding:20px; border-radius:12px; flex:1; min-width:280px;">
+                            <strong>⭐⭐⭐⭐⭐</strong><br>
+                            Amazing sound and super comfortable! Fast delivery.
+                            <p style="margin-top:12px; font-size:0.95rem; color:#666;">— Sarah, Dhaka</p>
+                        </div>
+                        <div style="background:#f8f9fa; padding:20px; border-radius:12px; flex:1; min-width:280px;">
+                            <strong>⭐⭐⭐⭐</strong><br>
+                            Best headphones I’ve ever owned. Worth every penny!
+                            <p style="margin-top:12px; font-size:0.95rem; color:#666;">— Rahul, Bangladesh</p>
+                        </div>
+                    </div>`;
+            }
+        };
+
+        // Quantity change
+        window.changeQty = function (change) {
+            const input = document.getElementById('qty-input');
+            let qty = parseInt(input.value);
+            qty = Math.max(1, qty + change);
+            input.value = qty;
+        };
+
+        // Page ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initCommon();   // keeps cart count + user section working
+            switchTab(0);   // default tab
+            
+            console.log('%c✅ Static Product Detail Page is now PERFECT!', 'color:#0d6efd; font-size:16px;');
+        });
+        </script>
+        <script src="js/carousel.js"></script>
+    </body>
+</html>

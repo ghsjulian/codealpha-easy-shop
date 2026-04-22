@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ShopEasy - Home</title>
+        <link rel="stylesheet" href="css/index.css" />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">
+                <h2>ShopEasy</h2>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html">Shop</a>
+                <a href="cart.html">Cart</a>
+            </div>
+            <div class="nav-right">
+                <div id="user-section"></div>
+                <a href="cart.html" class="cart-link">
+                    🛒
+                    <span id="cart-count" class="cart-count">0</span>
+                </a>
+            </div>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+        <!-- Hero Carousel -->
+        <section class="hero-carousel">
+            <div class="carousel">
+                <div class="slides" id="slides">
+                    <!-- Slide 1 -->
+                    <div class="slide">
+                        <img
+                            src="https://picsum.photos/id/1015/2000/1200"
+                            alt="Summer Sale"
+                        />
+                        <div class="slide-content">
+                            <h1>Summer Sale</h1>
+                            <p>
+                                Up to <strong>50% OFF</strong> on premium
+                                gadgets &amp; accessories
+                            </p>
+                            <a
+                                href="#products-section"
+                                class="btn-primary"
+                                style="font-size: 1.25rem; padding: 16px 40px"
+                                >Shop the Sale</a
+                            >
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <img
+                            src="https://picsum.photos/id/201/2000/1200"
+                            alt="New Arrivals"
+                        />
+                        <div class="slide-content">
+                            <h1>New Arrivals</h1>
+                            <p>
+                                Latest tech drops — headphones, smartwatches
+                                &amp; more
+                            </p>
+                            <a
+                                href="#products-section"
+                                class="btn-primary"
+                                style="font-size: 1.25rem; padding: 16px 40px"
+                                >Explore Collection</a
+                            >
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="slide">
+                        <img
+                            src="https://picsum.photos/id/29/2000/1200"
+                            alt="Free Shipping"
+                        />
+                        <div class="slide-content">
+                            <h1>Free Shipping</h1>
+                            <p>
+                                On all orders over $50 • Delivered in 2-4 days
+                            </p>
+                            <a
+                                href="#products-section"
+                                class="btn-primary"
+                                style="font-size: 1.25rem; padding: 16px 40px"
+                                >Start Shopping</a
+                            >
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel Controls -->
+                <button class="carousel-btn prev" onclick="prevSlide()">
+                    ❮
+                </button>
+                <button class="carousel-btn next" onclick="nextSlide()">
+                    ❯
+                </button>
+                <div class="carousel-dots" id="dots"></div>
+            </div>
+        </section>
+
+        <!-- Products Section - Static Cards (Electronics + Dresses & Fashion) -->
+        <section id="products-section" class="products-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Latest Products</h2>
+                </div>
+
+                <div class="products-grid">
+                    <!-- Electronics Products -->
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/20/600/400"
+                            alt="Wireless Headphones"
+                        />
+                        <div class="content">
+                            <h3>Wireless Headphones</h3>
+                            <p class="price">$79.99</p>
+                            <p>
+                                Premium noise-cancelling over-ear headphones
+                                with 30-hour battery life.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(1);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(1);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/29/600/400"
+                            alt="Smart Watch"
+                        />
+                        <div class="content">
+                            <h3>Smart Watch Series X</h3>
+                            <p class="price">$199.99</p>
+                            <p>
+                                Track fitness, heart rate, notifications. Sleek
+                                &amp; waterproof.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(2);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(2);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/30/600/400"
+                            alt="Laptop Stand"
+                        />
+                        <div class="content">
+                            <h3>Ergonomic Laptop Stand</h3>
+                            <p class="price">$29.99</p>
+                            <p>
+                                Adjustable aluminum stand for better posture and
+                                cooling.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(3);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(3);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/101/600/400"
+                            alt="Bluetooth Speaker"
+                        />
+                        <div class="content">
+                            <h3>Portable Bluetooth Speaker</h3>
+                            <p class="price">$49.99</p>
+                            <p>
+                                Waterproof, 12-hour playtime, deep bass. Take
+                                music anywhere.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(4);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(4);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/160/600/400"
+                            alt="USB-C Cables"
+                        />
+                        <div class="content">
+                            <h3>USB-C Cable Pack (3-Pack)</h3>
+                            <p class="price">$15.99</p>
+                            <p>
+                                Fast charging cables compatible with all modern
+                                devices.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(5);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(5);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/201/600/400"
+                            alt="Gaming Mouse"
+                        />
+                        <div class="content">
+                            <h3>RGB Gaming Mouse</h3>
+                            <p class="price">$39.99</p>
+                            <p>
+                                High-precision with 7 RGB modes and ergonomic
+                                grip.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(6);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(6);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dresses & Fashion Products -->
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/1005/600/400"
+                            alt="Floral Summer Dress"
+                        />
+                        <div class="content">
+                            <h3>Floral Summer Dress</h3>
+                            <p class="price">$39.99</p>
+                            <p>
+                                Lightweight breathable cotton dress perfect for
+                                sunny days.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(7);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(7);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/1009/600/400"
+                            alt="Denim Jacket"
+                        />
+                        <div class="content">
+                            <h3>Classic Denim Jacket</h3>
+                            <p class="price">$49.99</p>
+                            <p>
+                                Timeless blue denim jacket for any season and
+                                outfit.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(8);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(8);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/1011/600/400"
+                            alt="Oversized Hoodie"
+                        />
+                        <div class="content">
+                            <h3>Cozy Oversized Hoodie</h3>
+                            <p class="price">$29.99</p>
+                            <p>
+                                Soft cotton hoodie with modern street-style fit.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(9);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(9);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/1003/600/400"
+                            alt="Black Midi Dress"
+                        />
+                        <div class="content">
+                            <h3>Elegant Black Midi Dress</h3>
+                            <p class="price">$79.99</p>
+                            <p>
+                                Sophisticated midi dress perfect for evening
+                                occasions.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(10);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(10);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/1016/600/400"
+                            alt="White Sneakers"
+                        />
+                        <div class="content">
+                            <h3>Minimal White Sneakers</h3>
+                            <p class="price">$59.99</p>
+                            <p>
+                                Comfortable everyday sneakers with premium
+                                cushioning.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(11);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(11);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            src="https://picsum.photos/id/1009/600/400"
+                            alt="Leather Crossbody Bag"
+                        />
+                        <div class="content">
+                            <h3>Leather Crossbody Bag</h3>
+                            <p class="price">$69.99</p>
+                            <p>
+                                Stylish vegan leather bag perfect for daily use.
+                            </p>
+                            <div class="card-actions">
+                                <button
+                                    onclick="
+                                        viewProduct(12);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #0d6efd; color: white"
+                                >
+                                    View Details
+                                </button>
+                                <button
+                                    onclick="
+                                        addToCart(12);
+                                        event.stopImmediatePropagation();
+                                    "
+                                    style="background: #198754; color: white"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content container">
+                <div class="footer-col">
+                    <h2 style="color: #0d6efd; margin-bottom: 12px">
+                        🛒 ShopEasy
+                    </h2>
+                    <p>
+                        Your one-stop destination for premium gadgets,
+                        accessories &amp; lifestyle products. Quality you can
+                        trust.
+                    </p>
+                    <div
+                        style="
+                            margin-top: 25px;
+                            display: flex;
+                            gap: 15px;
+                            font-size: 1.6rem;
+                        "
+                    >
+                        <span>📘</span>
+                        <span>🐦</span>
+                        <span>📸</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Shop</h3>
+                    <a href="index.html">Home</a>
+                    <a href="index.html">All Products</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="#">Deals</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Account</h3>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                    <a href="cart.html">My Orders</a>
+                    <a href="#">Wishlist</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Stay Updated</h3>
+                    <p>
+                        Join our newsletter for exclusive offers and new
+                        arrivals.
+                    </p>
+                    <div class="newsletter">
+                        <input
+                            type="email"
+                            placeholder="your@email.com"
+                            id="newsletter-email"
+                        />
+                        <button onclick="subscribeNewsletter()">Join</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom container">
+                <p>&copy; 2026 ShopEasy. All rights reserved.</p>
+                <p>Made with pure HTML • CSS • JavaScript</p>
+                <p style="color: #0d6efd">
+                    Developed By :
+                    <a
+                        style="
+                            color: white;
+                            text-decoration: none;
+                            font-weight: 700;
+                        "
+                        target="_blank"
+                        href="https://ghsresume.netlify.app"
+                        >Ghs Julian</a
+                    >
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            // Toggle Mobile Menu
+            function toggleMobileMenu() {
+                const navLinks = document.getElementById("nav-links");
+                navLinks.classList.toggle("active");
+            }
+        </script>
+        <script src="js/carousel.js"></script>
+    </body>
+</html>
