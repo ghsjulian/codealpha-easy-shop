@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Panel Dashboard</title>
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/admin.css" />
+    </head>
+    <body>
+        <nav class="sidebar">
+            <div class="logo-content">
+                <i class="bx bxs-bolt"></i>
+                <span class="logo_name">CodeAlpha Admin</span>
+            </div>
+                       <ul class="nav-list">
+                <li>
+                    <a href="admin.html" class="active">
+                        <i class="bx bx-grid-alt"></i
+                        ><span class="link_name">Overview</span></a
+                    >
+                </li>
+                <li>
+                    <a  href="add-product.html"
+                        ><i class="bx bx-user"></i
+                        ><span class="link_name">Add Product</span></a
+                    >
+                </li>
+                <li>
+                    <a href="order.html"
+                        ><i class="bx bx-cart-alt"></i
+                        ><span class="link_name">Orders</span></a
+                    >
+                </li>
+            
+                <li>
+                    <a href="#"
+                        ><i class="bx bx-cog"></i
+                        ><span class="link_name">Settings</span></a
+                    >
+                </li>
+            </ul>
+       
+        </nav>
+
+        <div class="main-content">
+            <header>
+                <div class="toggle-btn" id="btn">
+                    <i class="bx bx-menu"></i>
+                </div>
+                <div
+                    class="user-profile"
+                    style="display: flex; align-items: center; gap: 10px"
+                >
+                    <span style="font-weight: 500">Ghs Julian</span>
+                    <div
+                        style="
+                            width: 35px;
+                            height: 35px;
+                            background: #ddd;
+                            border-radius: 50%;
+                            display:flex;
+                            justify-content:center;
+                            align-items:center
+                        "
+                    >
+                        <img
+                            style="
+                                width: 32px;
+                                height: 32px;
+                                object-fit: cover;
+                                border-radius: 50%;
+                            "
+                            src="img/ghs-passport.png"
+                        />
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bx bx-dollar-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <p>Total Revenue</p>
+                            <h3>$54,230</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div
+                            class="stat-icon"
+                            style="background: #fff7ed; color: #ea580c"
+                        >
+                            <i class="bx bx-shopping-bag"></i>
+                        </div>
+                        <div class="stat-info">
+                            <p>Total Sales</p>
+                            <h3>1,482</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div
+                            class="stat-icon"
+                            style="background: #f0fdf4; color: #16a34a"
+                        >
+                            <i class="bx bx-group"></i>
+                        </div>
+                        <div class="stat-info">
+                            <p>New Leads</p>
+                            <h3>284</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h2 style="margin-bottom: 20px; font-size: 18px">
+                        Recent Transactions
+                    </h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#INV-0012</td>
+                                <td>Alex Johnson</td>
+                                <td>$450.00</td>
+                                <td>
+                                    <span class="status success"
+                                        >Completed</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#INV-0013</td>
+                                <td>Sarah Williams</td>
+                                <td>$1,200.00</td>
+                                <td>
+                                    <span class="status warning">Pending</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#INV-0014</td>
+                                <td>Michael Chen</td>
+                                <td>$89.99</td>
+                                <td>
+                                    <span class="status success"
+                                        >Completed</span
+                                    >
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+
+        <script>
+            const btn = document.querySelector("#btn");
+            const sidebar = document.querySelector(".sidebar");
+
+            btn.onclick = function () {
+                if (window.innerWidth > 768) {
+                    // Desktop: Toggle collapse
+                    sidebar.classList.toggle("collapsed");
+                } else {
+                    // Mobile: Toggle slide-in
+                    sidebar.classList.toggle("active");
+                }
+            };
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener("click", function (e) {
+                if (window.innerWidth <= 768) {
+                    if (
+                        !sidebar.contains(e.target) &&
+                        !btn.contains(e.target) &&
+                        sidebar.classList.contains("active")
+                    ) {
+                        sidebar.classList.remove("active");
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

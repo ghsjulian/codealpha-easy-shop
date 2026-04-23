@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>View Latest Orders | Admin Panel Dashboard</title>
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/admin.css" />
+        <link rel="stylesheet" href="css/order.css" />
+    </head>
+    <body>
+        <nav class="sidebar">
+            <div class="logo-content">
+                <i class="bx bxs-bolt"></i>
+                <span class="logo_name">CodeAlpha Admin</span>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="admin.html">
+                        <i class="bx bx-grid-alt"></i
+                        ><span class="link_name">Overview</span></a
+                    >
+                </li>
+                <li>
+                    <a href="add-product.html"
+                        ><i class="bx bx-user"></i
+                        ><span class="link_name">Add Product</span></a
+                    >
+                </li>
+                <li>
+                    <a class="active" href="order.html"
+                        ><i class="bx bx-cart-alt"></i
+                        ><span class="link_name">Orders</span></a
+                    >
+                </li>
+            
+                <li>
+                    <a href="#"
+                        ><i class="bx bx-cog"></i
+                        ><span class="link_name">Settings</span></a
+                    >
+                </li>
+            </ul>
+         </nav>
+        <div class="main-content">
+                       <header>
+                <div class="toggle-btn" id="btn">
+                    <i class="bx bx-menu"></i>
+                </div>
+                <div
+                    class="user-profile"
+                    style="display: flex; align-items: center; gap: 10px"
+                >
+                    <span style="font-weight: 500">Ghs Julian</span>
+                    <div
+                        style="
+                            width: 35px;
+                            height: 35px;
+                            background: #ddd;
+                            border-radius: 50%;
+                            display:flex;
+                            justify-content:center;
+                            align-items:center
+                        "
+                    >
+                        <img
+                            style="
+                                width: 32px;
+                                height: 32px;
+                                object-fit: cover;
+                                border-radius: 50%;
+                            "
+                            src="img/ghs-passport.png"
+                        />
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <div class="page-title">
+                    <h2>Manage Orders</h2>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-header">
+                        <input
+                            type="text"
+                            class="search-orders"
+                            placeholder="Search by Order ID..."
+                        />
+                        <div class="filters">
+                            <select
+                                style="
+                                    padding: 8px;
+                                    border-radius: 8px;
+                                    border: 1px solid var(--border-color);
+                                "
+                            >
+                                <option>All Status</option>
+                                <option>Delivered</option>
+                                <option>Pending</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Order ID" class="order-id">
+                                    #ORD-9921
+                                </td>
+                                <td data-label="Customer">
+                                    <div class="customer-info">
+                                        <div class="customer-img"></div>
+                                        <span>Alex Johnson</span>
+                                    </div>
+                                </td>
+                                <td data-label="Date">Apr 23, 2026</td>
+                                <td data-label="Amount">$125.50</td>
+                                <td data-label="Status">
+                                    <span class="status delivered"
+                                        >Delivered</span
+                                    >
+                                </td>
+                                <td data-label="Action">
+                                    <button class="action-btn">
+                                        <i
+                                            class="bx bx-dots-vertical-rounded"
+                                        ></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="Order ID" class="order-id">
+                                    #ORD-9922
+                                </td>
+                                <td data-label="Customer">
+                                    <div class="customer-info">
+                                        <div class="customer-img"></div>
+                                        <span>Sarah Miller</span>
+                                    </div>
+                                </td>
+                                <td data-label="Date">Apr 22, 2026</td>
+                                <td data-label="Amount">$340.00</td>
+                                <td data-label="Status">
+                                    <span class="status pending">Pending</span>
+                                </td>
+                                <td data-label="Action">
+                                    <button class="action-btn">
+                                        <i
+                                            class="bx bx-dots-vertical-rounded"
+                                        ></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="Order ID" class="order-id">
+                                    #ORD-9923
+                                </td>
+                                <td data-label="Customer">
+                                    <div class="customer-info">
+                                        <div class="customer-img"></div>
+                                        <span>Michael Brown</span>
+                                    </div>
+                                </td>
+                                <td data-label="Date">Apr 21, 2026</td>
+                                <td data-label="Amount">$89.00</td>
+                                <td data-label="Status">
+                                    <span class="status cancelled"
+                                        >Cancelled</span
+                                    >
+                                </td>
+                                <td data-label="Action">
+                                    <button class="action-btn">
+                                        <i
+                                            class="bx bx-dots-vertical-rounded"
+                                        ></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+
+        <script>
+            // Sidebar Toggle Logic
+            const btn = document.querySelector("#btn");
+            const sidebar = document.querySelector(".sidebar");
+
+            btn.onclick = function () {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.toggle("collapsed");
+                } else {
+                    sidebar.classList.toggle("active");
+                }
+            };
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener("click", function (e) {
+                if (window.innerWidth <= 768) {
+                    if (
+                        !sidebar.contains(e.target) &&
+                        !btn.contains(e.target) &&
+                        sidebar.classList.contains("active")
+                    ) {
+                        sidebar.classList.remove("active");
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

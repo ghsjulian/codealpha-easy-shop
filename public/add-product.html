@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add New Product | Create New Product</title>
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/admin.css" />
+        <link rel="stylesheet" href="css/add-product.css" />
+        <script>
+            window.onload = () => {
+                let user = JSON.parse(localStorage.getItem("user")) || null;
+                if (user == null && user?.role !== "ADMIN") {
+                    window.location.href = "/login.html";
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <nav class="sidebar">
+            <div class="logo-content">
+                <i class="bx bxs-bolt"></i>
+                <span class="logo_name">CodeAlpha Admin</span>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="admin.html">
+                        <i class="bx bx-grid-alt"></i
+                        ><span class="link_name">Overview</span></a
+                    >
+                </li>
+                <li>
+                    <a class="active" href="add-product.html"
+                        ><i class="bx bx-user"></i
+                        ><span class="link_name">Add Product</span></a
+                    >
+                </li>
+                <li>
+                    <a href="order.html"
+                        ><i class="bx bx-cart-alt"></i
+                        ><span class="link_name">Orders</span></a
+                    >
+                </li>
+
+                <li>
+                    <a href="#"
+                        ><i class="bx bx-cog"></i
+                        ><span class="link_name">Settings</span></a
+                    >
+                </li>
+            </ul>
+        </nav>
+        <div class="main-content">
+            <header>
+                <div class="toggle-btn" id="btn">
+                    <i class="bx bx-menu"></i>
+                </div>
+                <div
+                    class="user-profile"
+                    style="display: flex; align-items: center; gap: 10px"
+                >
+                    <span style="font-weight: 500">Ghs Julian</span>
+                    <div
+                        style="
+                            width: 35px;
+                            height: 35px;
+                            background: #ddd;
+                            border-radius: 50%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        "
+                    >
+                        <img
+                            style="
+                                width: 32px;
+                                height: 32px;
+                                object-fit: cover;
+                                border-radius: 50%;
+                            "
+                            src="img/ghs-passport.png"
+                        />
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Add New Product</h2>
+                        <p style="color: var(--text-muted); font-size: 13px">
+                            Fill in the information below to add a new product
+                            to your store.
+                        </p>
+                    </div>
+
+                    <form class="product-form">
+                        <div class="form-group full-width">
+                            <label>Product Name</label>
+                            <input
+                                type="text"
+                                placeholder="e.g. Premium Wireless Headphones"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select>
+                                <option>Electronics</option>
+                                <option>Fashion</option>
+                                <option>Home & Garden</option>
+                                <option>Gadgets</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Base Price ($)</label>
+                            <input
+                                type="number"
+                                placeholder="0.00"
+                                step="0.01"
+                            />
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Description</label>
+                            <textarea
+                                rows="4"
+                                placeholder="Describe your product features..."
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stock Quantity</label>
+                            <input type="number" placeholder="e.g. 100" />
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Product Images</label>
+                            <div
+                                class="image-upload-wrapper"
+                                onclick="
+                                    document.getElementById('fileInput').click()
+                                "
+                            >
+                                <i
+                                    class="bx bx-cloud-upload"
+                                    style="
+                                        font-size: 40px;
+                                        color: var(--primary-color);
+                                    "
+                                ></i>
+                                <p style="font-size: 14px; margin-top: 10px">
+                                    Click to upload or drag and drop
+                                </p>
+                                <input
+                                    type="file"
+                                    id="fileInput"
+                                    hidden
+                                    accept="image/*"
+                                />
+                                <img id="imagePreview" src="" alt="Preview" />
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary">
+                                Discard
+                            </button>
+                            <button
+                                id="submit"
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Publish Product
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+
+        <script>
+            const btn = document.querySelector("#btn");
+            const sidebar = document.querySelector(".sidebar");
+            btn.onclick = function () {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.toggle("collapsed");
+                } else {
+                    sidebar.classList.toggle("active");
+                }
+            };
+            // Responsive Sidebar Closer
+            document.addEventListener("click", function (e) {
+                if (window.innerWidth <= 768) {
+                    if (
+                        !sidebar.contains(e.target) &&
+                        !btn.contains(e.target) &&
+                        sidebar.classList.contains("active")
+                    ) {
+                        sidebar.classList.remove("active");
+                    }
+                }
+            });
+        </script>
+        <script src="js/add-product.js"></script>
+    </body>
+</html>

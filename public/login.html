@@ -9,6 +9,14 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         />
         <link rel="stylesheet" href="css/login-style.css" />
+        <script>
+            window.onload = () => {
+                let token = localStorage.getItem("token");
+                if (token !== null) {
+                   window.location.href = "/";
+                }
+            };
+        </script>
     </head>
     <body>
         <div class="container">
@@ -23,11 +31,7 @@
                         <label>Email Address</label>
                         <div class="input-wrapper">
                             <i class="fas fa-envelope"></i>
-                            <input
-                                type="email"
-                                placeholder="you@example.com"
-                                required
-                            />
+                            <input type="email" placeholder="you@example.com" />
                         </div>
                     </div>
 
@@ -39,7 +43,6 @@
                                 type="password"
                                 id="password"
                                 placeholder="••••••••"
-                                required
                             />
                             <button
                                 type="button"
@@ -50,14 +53,6 @@
                             </button>
                         </div>
                     </div>
-
-                    <div class="options">
-                        <label class="checkbox-label">
-                            <input type="checkbox" /> Remember me
-                        </label>
-                        <a href="#" class="forgot-link">Forgot password?</a>
-                    </div>
-
                     <button type="submit" class="login-btn">Sign In</button>
                 </form>
 
@@ -96,5 +91,6 @@
                 }
             }
         </script>
+        <script src="js/login.js"></script>
     </body>
 </html>

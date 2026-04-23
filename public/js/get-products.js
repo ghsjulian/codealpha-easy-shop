@@ -1,0 +1,63 @@
+const api = "http://localhost:3000/api/v1/products/get-products";
+const productGrid = document.querySelector(".products-grid");
+
+const fetchAll = async () => {
+    try {
+        const req = await fetch(api);
+        const response = await req.json();
+        const products = response?.products || [];
+        if (!products.length) {
+            productGrid.innerHTML = "<p>No products found</p>";
+            return;
+        }
+        let html = "";
+        products.forEach((product, index) => {
+            html += `
+                <div class="product-card" data-id="${product._id || index}">
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                    />
+                    <div class="content">
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price}</p>
+                        <p>${product.description}</p>
+                        <div class="card-actions">
+                            <button class="view-btn" data-id="${product._id || index}"
+                                style="background: #0d6efd; color: white">
+                                View Details
+                            </button>
+                            <button class="cart-btn" data-id="${product._id || index}"
+                                style="background: #198754; color: white">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        productGrid.innerHTML = html;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        productGrid.innerHTML = "<p>Failed to load products</p>";
+    }
+};
+
+
+fetchAll();
+
+productGrid.addEventListener("click", e => {
+    const cartBtn = e.target.closest(".cart-btn");
+    const viewBtn = e.target.closest(".view-btn");
+
+    if (cartBtn) {
+        const id = cartBtn.dataset.id;
+        console.log("Add to cart:", id);
+    }
+
+    if (viewBtn) {
+        const id = viewBtn.dataset.id;
+        window.location.href = "view-product.html?" + id;
+    }
+});

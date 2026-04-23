@@ -38,14 +38,10 @@
         }
         
          // Page initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            initCommon();                    // keeps cart count, user section, etc.
+        document.addEventListener('DOMContentLoaded', () => {            // keeps cart count, user section, etc.
             updateDots();
             const autoPlayInterval = startCarouselAutoPlay();
-
             const carousel = document.querySelector('.hero-carousel');
             carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
             carousel.addEventListener('mouseleave', () => startCarouselAutoPlay());
-
-            console.log('%c✅ ShopEasy Home Page is now 100% static & perfect!', 'color:#0d6efd; font-size:16px;');
         });

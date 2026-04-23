@@ -1,0 +1,144 @@
+/* CORE LAYOUT STYLES */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 80px;
+    --primary-color: #4361ee;
+    --bg-color: #f8f9fa;
+    --white: #ffffff;
+    --border-color: #e2e8f0;
+    --text-main: #2b2d42;
+    --text-muted: #8d99ae;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Status Colors */
+    --status-success-bg: #dcfce7;
+    --status-success-text: #166534;
+    --status-pending-bg: #fef9c3;
+    --status-pending-text: #854d0e;
+    --status-danger-bg: #fee2e2;
+    --status-danger-text: #991b1b;
+}
+/* --- ORDERS PAGE STYLES --- */
+.page-title {
+    margin-bottom: 20px;
+}
+.page-title h2 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.table-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.search-orders {
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    width: 250px;
+}
+
+/* Responsive Table Logic */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f9fafb;
+}
+
+th {
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+}
+
+td {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+}
+
+.order-id {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.customer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.customer-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #eee;
+}
+
+/* Status Pills */
+.status {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.status.delivered {
+    background: var(--status-success-bg);
+    color: var(--status-success-text);
+}
+.status.pending {
+    background: var(--status-pending-bg);
+    color: var(--status-pending-text);
+}
+.status.cancelled {
+    background: var(--status-danger-bg);
+    color: var(--status-danger-text);
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 18px;
+    transition: 0.2s;
+}
+.action-btn:hover {
+    color: var(--primary-color);
+}
+
+/* MOBILE RESPONSIVE  */
+@media (max-width: 768px) {
+    .main-content {
+        left: 0;
+        width: 100%;
+    }
+    .search-orders {
+        width: 100%;
+    }
+    table {
+        width: 100%;
+        overflow-x: auto;
+    }
+}
