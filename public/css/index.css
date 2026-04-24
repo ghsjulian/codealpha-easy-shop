@@ -18,7 +18,7 @@ body {
 }
 
 .container {
-    max-width: 1280px;
+    max-width: 1480px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -56,7 +56,10 @@ body {
     font-weight: 500;
     transition: color 0.3s;
 }
-
+.nav-links #logout {
+    color: #d73b00;
+    font-weight: 800;
+}
 .nav-links a:hover {
     color: #0d6efd;
 }
@@ -146,7 +149,14 @@ body {
     z-index: 2;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
-
+.slide-content a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 800;
+    background: #004ba7;
+    border-radius: 30px;
+    padding: 0.2rem .6rem;
+}
 .slide-content h1 {
     font-size: 3.4rem;
     line-height: 1.1;
@@ -268,6 +278,10 @@ body {
 .product-card h3 {
     font-size: 1.35rem;
     margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .product-card .price {

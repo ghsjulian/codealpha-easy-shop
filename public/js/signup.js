@@ -2,7 +2,8 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
-
+const btn = document.querySelector(".login-btn")
+    
     const fullNameInput = document.querySelector('input[type="text"]');
     const emailInput = document.querySelector('input[type="email"]');
     const phoneInput = document.querySelector('input[type="tel"]');
@@ -51,6 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // ---------------- API CALL ----------------
         try {
+            btn.textContent = "Processing..."
+            btn.disable = true;
             const res = await fetch(
                 "http://localhost:3000/api/v1/auth/signup",
                 {
@@ -85,6 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (err) {
             console.error(err);
             alert("Server error! Try again later.");
+        }finally {
+            btn.textContent = "Create Account"
+            btn.disable = false;
         }
     });
 });

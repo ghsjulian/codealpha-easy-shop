@@ -4,15 +4,42 @@ const api2 = "http://localhost:3000/api/v1/products/get-products";
 const detailContainer = document.querySelector(".container");
 const relatedGrid = document.querySelector(".related-grid");
 
+const addToCart = product => {
+    let cartList = JSON.parse(localStorage.getItem("cart")) || [];
+    const img = document.querySelector(".detail-image img");
+    const qyt = document.querySelector("#qty-input");
+    const cart = {
+        name: img.alt,
+        image: img.src,
+        qyt: parseInt(qyt.value),
+        stok: parseInt(img.getAttribute("stok")),
+        price: parseInt(img.getAttribute("price")),
+        salePrice: parseInt(img.getAttribute("price")),
+        id: img.getAttribute("id")
+    };
+    const isExist = cartList.some(prod => prod.id === cart.id);
+    if (isExist) {
+        window.location.href = "cart.html";
+        return;
+    }
+    cartList.unshift(cart);
+    localStorage.setItem("cart", JSON.stringify(cartList));
+    document.getElementById("crt-btn").textContent = "Added Already"
+};
 const fetchProduct = async id => {
     try {
         const req = await fetch(api + "?id=" + id);
         const response = await req.json();
         if (response?.success) {
+            let cartList = JSON.parse(localStorage.getItem("cart")) || [];
+            let isExist = cartList.filter(prod => prod?.id === id);
             detailContainer.innerHTML = `
              <div class="detail-container">
                     <div class="detail-image">
                         <img
+                            id="${response?.product?._id}"
+                            stok="${response?.product?.stok}"
+                            price="${response?.product?.price}"
                             src="${response?.product?.image}"
                             alt="${response?.product?.name}"
                         />
@@ -39,17 +66,18 @@ const fetchProduct = async id => {
                             <div class="quantity-control">
                                 <button onclick="changeQty(-1)">–</button>
                                 <input
-                                    type="text"
+                                    type="number"
                                     id="qty-input"
                                     value="1"
+                                    max="${response?.product?.stok}"
                                     readonly
                                 />
-                                <button onclick="changeQty(1)">+</button>
+                                <button onclick="changeQty(+1)">+</button>
                             </div>
                         </div>
                         <div class="action-buttons">
-                            <button onclick="addToCart(1)" class="btn-primary">
-                                Add to Cart – $${response?.product?.price}
+                            <button id="crt-btn" onclick="addToCart()" class="btn-primary">
+                                ${isExist.length == 0 ? "Add to Cart" : "Added Already"} – $${response?.product?.price}
                             </button>
                             <button
                                 onclick="window.history.back()"

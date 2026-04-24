@@ -6,6 +6,10 @@
         <title>ShopEasy - Home</title>
         <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="css/view-product.css" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <!-- Navbar -->
@@ -17,11 +21,12 @@
                 <a href="index.html">Home</a>
                 <a href="index.html">Shop</a>
                 <a href="cart.html">Cart</a>
+                <a onclick="logout()" id="logout" href="#">Logout</a>
             </div>
             <div class="nav-right">
                 <div id="user-section"></div>
                 <a href="cart.html" class="cart-link">
-                    🛒
+                    <i class="bx bx-cart-add"></i>
                     <span id="cart-count" class="cart-count">0</span>
                 </a>
             </div>
@@ -30,70 +35,7 @@
 
         <!-- Product Detail - Fully Static -->
         <section class="product-detail-section">
-            <div class="container">
-                <div class="detail-container">
-                    <!-- Static Product Image -->
-                    <div class="detail-image">
-                        <img
-                            src="https://picsum.photos/id/20/800/800"
-                            alt="Wireless Headphones"
-                        />
-                    </div>
-
-                    <!-- Static Product Info -->
-                    <div class="detail-info">
-                        <h1>Wireless Headphones</h1>
-                        <div class="price">$79.99</div>
-
-                        <div class="rating">
-                            ★★★★☆
-                            <span
-                                style="
-                                    font-size: 1rem;
-                                    color: #666;
-                                    margin-left: 12px;
-                                "
-                                >(128 reviews)</span
-                            >
-                        </div>
-
-                        <p>
-                            Premium noise-cancelling over-ear headphones with
-                            30-hour battery life and crystal-clear sound.
-                            Perfect for music lovers, travelers, and
-                            professionals who need focus and comfort.
-                        </p>
-
-                        <!-- Quantity -->
-                        <div class="quantity-row">
-                            <label>Quantity</label>
-                            <div class="quantity-control">
-                                <button onclick="changeQty(-1)">–</button>
-                                <input
-                                    type="text"
-                                    id="qty-input"
-                                    value="1"
-                                    readonly
-                                />
-                                <button onclick="changeQty(1)">+</button>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="action-buttons">
-                            <button onclick="addToCart(1)" class="btn-primary">
-                                Add to Cart – $79.99
-                            </button>
-                            <button
-                                onclick="window.history.back()"
-                                class="btn-secondary"
-                            >
-                                Continue Shopping
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="container"></div>
         </section>
         <!-- Related Products - Fully Static -->
         <section class="related-section">
@@ -287,16 +229,11 @@
                 const navLinks = document.getElementById("nav-links");
                 navLinks.classList.toggle("active");
             }
-            // Newsletter
-            window.subscribeNewsletter = function () {
-                const email = document
-                    .getElementById("newsletter-email")
-                    .value.trim();
-                if (email) {
-                    alert(
-                        "🎉 Thank you! You are now subscribed to ShopEasy deals."
-                    );
-                    document.getElementById("newsletter-email").value = "";
+            const logout = () => {
+                if (localStorage.getItem("token")) {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    window.location = "login.html";
                 }
             };
 
@@ -305,6 +242,7 @@
                 const input = document.getElementById("qty-input");
                 let qty = parseInt(input.value);
                 qty = Math.max(1, qty + change);
+                if (parseInt(input.getAttribute("max")) < qty) return;
                 input.value = qty;
             };
         </script>

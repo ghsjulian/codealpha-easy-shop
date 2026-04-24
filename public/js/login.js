@@ -1,7 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
-
+    const btn = document.querySelector(".login-btn")
+    
+    
     const emailInput = document.querySelector('input[type="email"]');
     const passwordInput = document.getElementById("password");
 
@@ -31,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         // ---------------- API CALL ----------------
         try {
+            btn.textContent = "Processing..."
+            btn.disable = true;
             const res = await fetch("http://localhost:3000/api/v1/auth/login", {
                 method: "POST",
                 headers: {
@@ -57,10 +61,16 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("token", data?.token);
             localStorage.setItem("user", JSON.stringify(data?.user));
             // Optional redirect
+            if(data?.user?.role === "ADMIN"){
+            window.location.href = "/admin.html";
+            }
             window.location.href = "/index.html";
         } catch (err) {
             console.error(err);
             alert("Server error! Try again later.");
+        }finally{
+            btn.textContent = "Login Now"
+            btn.disable = false;
         }
     });
 });

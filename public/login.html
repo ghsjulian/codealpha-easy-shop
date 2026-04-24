@@ -10,12 +10,10 @@
         />
         <link rel="stylesheet" href="css/login-style.css" />
         <script>
-            window.onload = () => {
                 let token = localStorage.getItem("token");
                 if (token !== null) {
                    window.location.href = "/";
                 }
-            };
         </script>
     </head>
     <body>

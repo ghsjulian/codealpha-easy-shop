@@ -51,6 +51,12 @@
                         ><span class="link_name">Settings</span></a
                     >
                 </li>
+                 <li onclick="logout()">
+                    <a href="#"
+                        ><i class="bx bx-right-arrow-alt"></i
+                        ><span class="link_name">Logout</span></a
+                    >
+                </li>
             </ul>
         </nav>
         <div class="main-content">
@@ -205,6 +211,13 @@
                     }
                 }
             });
+            const logout = () => {
+                if (localStorage.getItem("token")) {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    window.location = "login.html";
+                }
+            };
         </script>
         <script src="js/add-product.js"></script>
     </body>

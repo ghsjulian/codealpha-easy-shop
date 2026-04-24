@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>ShopEasy - Home</title>
         <link rel="stylesheet" href="/css/index.css" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <!-- Navbar -->
@@ -16,11 +20,12 @@
                 <a href="index.html">Home</a>
                 <a href="index.html">Shop</a>
                 <a href="cart.html">Cart</a>
+                <a onclick="logout()" id="logout" href="#">Logout</a>
             </div>
             <div class="nav-right">
                 <div id="user-section"></div>
                 <a href="cart.html" class="cart-link">
-                    🛒
+                    <i class="bx bx-cart-add"></i>
                     <span id="cart-count" class="cart-count">0</span>
                 </a>
             </div>
@@ -32,10 +37,7 @@
                 <div class="slides" id="slides">
                     <!-- Slide 1 -->
                     <div class="slide">
-                        <img
-                            src="https://picsum.photos/id/1015/2000/1200"
-                            alt="Summer Sale"
-                        />
+                        <img src="img/hero-1.jpg" alt="Summer Sale" />
                         <div class="slide-content">
                             <h1>Summer Sale</h1>
                             <p>
@@ -46,16 +48,13 @@
                                 href="#products-section"
                                 class="btn-primary"
                                 style="font-size: 1.25rem; padding: 16px 40px"
-                                >Shop the Sale</a
+                                >Shop The Sale</a
                             >
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="slide">
-                        <img
-                            src="https://picsum.photos/id/201/2000/1200"
-                            alt="New Arrivals"
-                        />
+                        <img src="img/hero-2.jpg" alt="New Arrivals" />
                         <div class="slide-content">
                             <h1>New Arrivals</h1>
                             <p>
@@ -72,10 +71,7 @@
                     </div>
                     <!-- Slide 3 -->
                     <div class="slide">
-                        <img
-                            src="https://picsum.photos/id/29/2000/1200"
-                            alt="Free Shipping"
-                        />
+                        <img src="img/hero-3.jpg" alt="Free Shipping" />
                         <div class="slide-content">
                             <h1>Free Shipping</h1>
                             <p>
@@ -612,6 +608,13 @@
                 const navLinks = document.getElementById("nav-links");
                 navLinks.classList.toggle("active");
             }
+            const logout = () => {
+                if (localStorage.getItem("token")) {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    window.location = "login.html";
+                }
+            };
         </script>
         <script src="/js/carousel.js"></script>
         <script src="js/get-products.js"></script>

@@ -9,6 +9,13 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="css/admin.css" />
+        <script>
+                let user = JSON.parse(localStorage.getItem("user")) || null
+                if(!user || user?.role !== "ADMIN"){
+                    window.location = "login.html"
+                }
+                
+        </script>
     </head>
     <body>
         <nav class="sidebar">
@@ -40,6 +47,12 @@
                     <a href="#"
                         ><i class="bx bx-cog"></i
                         ><span class="link_name">Settings</span></a
+                    >
+                </li>
+                   <li onclick="logout()">
+                    <a href="#"
+                        ><i class="bx bx-right-arrow-alt"></i
+                        ><span class="link_name">Logout</span></a
                     >
                 </li>
             </ul>
@@ -191,6 +204,13 @@
                     }
                 }
             });
+            const logout = () => {
+                if (localStorage.getItem("token")) {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    window.location = "login.html";
+                }
+            };
         </script>
     </body>
 </html>

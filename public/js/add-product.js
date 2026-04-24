@@ -60,6 +60,7 @@ form.addEventListener("submit", async e => {
         // ✅ wait for base64 conversion
         const fileData = await toBase64(file);
         submitBtn.textContent = "Please wait..."
+        submitBtn.disable = true
         const res = await fetch(
             api,
             {
@@ -95,5 +96,6 @@ form.addEventListener("submit", async e => {
         alert("Server error");
     }finally{
         submitBtn.textContent = "Publish Product"
+        submitBtn.disable = false
     }
 });
