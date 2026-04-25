@@ -10,6 +10,15 @@
 ### 📖 About Project
 **CodeAlpha Easy Shop** **is a full-stack web application designed to provide a seamless and secure e-commerce experience. With dedicated authentication handling, optimized routing, and a responsive frontend interface, this platform is built to manage dynamic product inventories, streamline checkout processes, and securely handle user data.**
 
+---
+---
+
+### Live Demo Link
+
+##### Frontend Site   : <a href="https://codealpha-eshop.netlify.app" target="_blank">https://codealpha-eshop.netlify.app</a>
+##### Admin Dashboard : <a href="https://codealpha-eshop.netlify.app/admin.html" target="_blank">https://codealpha-eshop.netlify.app/admin.html</a>
+##### Backend API    : <a href="https://codealpha-easy-shop-api.onrender.com" target="_blank">https://codealpha-easy-shop-api.onrender.com</a>
+
 
 ---
 ---
