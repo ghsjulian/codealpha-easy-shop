@@ -1,3 +1,5 @@
+// const api = "http://localhost:3000/api/v1/auth/signup"
+const api = "https://codealpha-easy-shop-api.onrender.com/api/v1/auth/signup"
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -55,7 +57,7 @@ const btn = document.querySelector(".login-btn")
             btn.textContent = "Processing..."
             btn.disable = true;
             const res = await fetch(
-                "http://localhost:3000/api/v1/auth/signup",
+                api,
                 {
                     method: "POST",
                     headers: {

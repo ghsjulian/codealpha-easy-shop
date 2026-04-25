@@ -1,4 +1,4 @@
-const api = "http://localhost:3000/api/v1/orders/create-order";
+const api = "https://codealpha-easy-shop-api.onrender.com/api/v1/orders/create-order";
 const cartList = JSON.parse(localStorage.getItem("cart")) || [];
 const cartCount = document.querySelector(".cart-count");
 const payBtn = document.querySelector(".btn-pay");

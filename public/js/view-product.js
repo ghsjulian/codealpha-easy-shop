@@ -1,5 +1,8 @@
-const api = "http://localhost:3000/api/v1/products/get-product";
-const api2 = "http://localhost:3000/api/v1/products/get-products";
+//const api = "http://localhost:3000/api/v1/products/get-product";
+//const api2 = "http://localhost:3000/api/v1/products/get-products";
+const api = "https://codealpha-easy-shop-api.onrender.com/api/v1/products/get-product";
+const api2 = "https://codealpha-easy-shop-api.onrender.com/api/v1/products/get-products";
+
 
 const detailContainer = document.querySelector(".container");
 const relatedGrid = document.querySelector(".related-grid");

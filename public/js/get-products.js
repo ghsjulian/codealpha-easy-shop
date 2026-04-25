@@ -1,4 +1,5 @@
-const api = "http://localhost:3000/api/v1/products/get-products";
+//const api = "http://localhost:3000/api/v1/products/get-products";
+const api = "https://codealpha-easy-shop-api.onrender.com/api/v1/products/get-products";
 const productGrid = document.querySelector(".products-grid");
 const cartCount = document.querySelector(".cart-count");
 

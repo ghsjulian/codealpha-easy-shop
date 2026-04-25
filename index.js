@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== "production") {
 // Enable CORS for frontend domain
 app.use(
     cors({
-        origin: "",
+        origin: "https://codealpha-eshop.netlify.app",
         methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,

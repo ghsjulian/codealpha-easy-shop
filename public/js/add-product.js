@@ -1,4 +1,4 @@
-var api = "http://localhost:3000/api/v1/products/add-product"
+var api = "https://codealpha-easy-shop-api.onrender.com/api/v1/products/add-product"
 const fileInput = document.getElementById("fileInput");
 const imagePreview = document.getElementById("imagePreview");
 const form = document.querySelector("form");
