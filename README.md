@@ -147,6 +147,8 @@ node index.js
 
 ### 🌐 Hosting Setup
 
+##### Frontend : Netlify
+##### Backend  : Vercel
 
 --- 
 ---
