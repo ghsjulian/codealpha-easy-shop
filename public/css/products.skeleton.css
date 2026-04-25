@@ -1,0 +1,68 @@
+  :root {
+            --sidebar-width: 260px;
+            --sidebar-collapsed-width: 80px;
+            --primary-color: #4361ee;
+            --bg-color: #f8f9fa;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --skeleton-base: #e2e8f0;
+            --skeleton-shimmer: #f8fafc;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+/* --- SKELETON ANIMATION --- */
+        .skeleton {
+            background-color: var(--skeleton-base);
+            background-image: linear-gradient(90deg, var(--skeleton-base) 0px, var(--skeleton-shimmer) 40px, var(--skeleton-base) 80px);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+            border-radius: 8px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        /* --- PRODUCTS GRID --- */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .products-grid {
+            display: grid;
+            /* Default: 4 columns */
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card-skeleton {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .sk-thumb { width: 100%; aspect-ratio: 1/1; margin-bottom: 15px; }
+        .sk-title { height: 16px; width: 80%; margin-bottom: 10px; }
+        .sk-price { height: 20px; width: 40%; margin-bottom: 15px; }
+        .sk-btn { height: 35px; width: 100%; border-radius: 6px; }
+
+        /* --- RESPONSIVE BREAKPOINTS --- */
+        @media (max-width: 1200px) {
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 992px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+   .main-content { left: 0; width: 100%; }
+            
+            .section-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .products-grid { grid-template-columns: 1fr; } /* Stack vertically on mobile */
+        }

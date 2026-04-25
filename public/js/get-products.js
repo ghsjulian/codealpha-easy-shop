@@ -1,13 +1,85 @@
 const api = "http://localhost:3000/api/v1/products/get-products";
 const productGrid = document.querySelector(".products-grid");
+const cartCount = document.querySelector(".cart-count");
+
+const updateCartCount = () => {
+    let cartList = JSON.parse(localStorage.getItem("cart")) || [];
+    cartCount.innerHTML = cartList.length;
+};
+
+const fetchProductLoading = () => {
+    productGrid.innerHTML = `
+            <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+                <div class="product-card-skeleton">
+                    <div class="skeleton sk-thumb"></div>
+                    <div class="skeleton sk-title"></div>
+                    <div class="skeleton sk-price"></div>
+                    <div class="skeleton sk-btn"></div>
+                </div>
+            `;
+};
 
 const fetchAll = async () => {
     try {
+        fetchProductLoading();
         const req = await fetch(api);
         const response = await req.json();
         const products = response?.products || [];
         if (!products.length) {
-            productGrid.innerHTML = "<p>No products found</p>";
+            productGrid.innerHTML = "No product found";
             return;
         }
         let html = "";
@@ -23,7 +95,7 @@ const fetchAll = async () => {
                     />
                     <div class="content">
                         <h3>${product.name}</h3>
-                        <p class="price">${product.price}</p>
+                        <p class="price">$${product.price}</p>
                         <p>${product.description}</p>
                         <div class="card-actions">
                             <button class="view-btn" 
@@ -56,7 +128,7 @@ const fetchAll = async () => {
         productGrid.innerHTML = "<p>Failed to load products</p>";
     }
 };
-
+updateCartCount();
 fetchAll();
 
 productGrid.addEventListener("click", e => {
@@ -70,7 +142,7 @@ productGrid.addEventListener("click", e => {
             name: cartBtn.dataset.name,
             image: cartBtn.dataset.img,
             qty: 1,
-            stok: parseInt(cartBtn.dataset.stok,10),
+            stok: parseInt(cartBtn.dataset.stok, 10),
             salePrice: parseInt(cartBtn.dataset.price, 10),
             price: parseInt(cartBtn.dataset.price, 10)
         };
@@ -84,6 +156,7 @@ productGrid.addEventListener("click", e => {
         cartList.unshift(cart);
         localStorage.setItem("cart", JSON.stringify(cartList));
         cartBtn.textContent = "Added Already";
+        updateCartCount();
     }
     if (viewBtn) {
         const id = viewBtn.dataset.id;

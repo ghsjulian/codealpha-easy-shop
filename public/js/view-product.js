@@ -3,20 +3,27 @@ const api2 = "http://localhost:3000/api/v1/products/get-products";
 
 const detailContainer = document.querySelector(".container");
 const relatedGrid = document.querySelector(".related-grid");
+const cartCount = document.querySelector(".cart-count");
 
+const updateCartCount = () => {
+    let cartList = JSON.parse(localStorage.getItem("cart")) || [];
+    cartCount.innerHTML = cartList.length;
+};
 const addToCart = product => {
     let cartList = JSON.parse(localStorage.getItem("cart")) || [];
     const img = document.querySelector(".detail-image img");
     const qyt = document.querySelector("#qty-input");
+    const priceTag = document.querySelector(".detail-info .price");
     const cart = {
         name: img.alt,
         image: img.src,
-        qyt: parseInt(qyt.value),
+        qty: parseInt(qyt.value),
         stok: parseInt(img.getAttribute("stok")),
-        price: parseInt(img.getAttribute("price")),
+        price: parseInt(priceTag.getAttribute("val")),
         salePrice: parseInt(img.getAttribute("price")),
         id: img.getAttribute("id")
     };
+
     const isExist = cartList.some(prod => prod.id === cart.id);
     if (isExist) {
         window.location.href = "cart.html";
@@ -24,13 +31,57 @@ const addToCart = product => {
     }
     cartList.unshift(cart);
     localStorage.setItem("cart", JSON.stringify(cartList));
-    document.getElementById("crt-btn").textContent = "Added Already"
+    document.getElementById("crt-btn").textContent = "Added Already";
+    updateCartCount();
+};
+const fetchSkeleton = () => {
+    detailContainer.innerHTML = `
+        <div class="gallery-sk">
+                    <div class="skeleton main-img-sk"></div>
+                    <div class="thumb-row-sk">
+                        <div class="skeleton thumb-sk"></div>
+                        <div class="skeleton thumb-sk"></div>
+                        <div class="skeleton thumb-sk"></div>
+                        <div class="skeleton thumb-sk"></div>
+                    </div>
+                </div>
+                <div class="info-sk">
+                    <div class="skeleton badge-sk"></div>
+                    <div class="skeleton title-sk"></div>
+                    <div class="skeleton price-sk"></div>
+                    <div style="border-top: 1px solid var(--border-color); padding-top: 20px;">
+                        <div class="skeleton" style="height: 18px; width: 100px; margin-bottom: 10px;"></div>
+                        <div class="variant-sk">
+                            <div class="skeleton circle-sk"></div>
+                            <div class="skeleton circle-sk"></div>
+                            <div class="skeleton circle-sk"></div>
+                        </div>
+                    </div>
+                    <div class="desc-sk">
+                        <div class="skeleton line-sk"></div>
+                        <div class="skeleton line-sk"></div>
+                        <div class="skeleton line-sk"></div>
+                        <div class="skeleton line-sk short"></div>
+                    </div>
+                    <div class="btn-group-sk">
+                        <div class="skeleton btn-sk"></div>
+                        <div class="skeleton btn-sk" style="flex: 0.3;"></div>
+                    </div>
+                </div>
+    `;
 };
 const fetchProduct = async id => {
     try {
+        fetchSkeleton();
         const req = await fetch(api + "?id=" + id);
         const response = await req.json();
         if (response?.success) {
+            if (!response?.product?._id) {
+                detailContainer.innerHTML = `
+                    <h3>Product not found</h3>
+                `;
+                return;
+            }
             let cartList = JSON.parse(localStorage.getItem("cart")) || [];
             let isExist = cartList.filter(prod => prod?.id === id);
             detailContainer.innerHTML = `
@@ -46,7 +97,8 @@ const fetchProduct = async id => {
                     </div>
                     <div class="detail-info">
                         <h1>${response?.product?.name}</h1>
-                        <div class="price">$${response?.product?.price}</div>
+                        <div fixed="${response?.product?.price}" 
+                            val="${response?.product?.price}" class="price">$${response?.product?.price}</div>
                         <div class="rating">
                             ★★★★☆
                             <span
@@ -144,4 +196,5 @@ window.onload = () => {
     if (!param) window.location.href = "/";
     fetchProduct(param);
     fetchRelated();
+    updateCartCount();
 };

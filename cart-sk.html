@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Cart Skeleton</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* CORE LAYOUT (Consistent with previous pages) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --sidebar-width: 260px;
+            --sidebar-collapsed-width: 80px;
+            --primary-color: #4361ee;
+            --bg-color: #f8f9fa;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --skeleton-base: #e2e8f0;
+            --skeleton-shimmer: #f8fafc;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); }
+
+        /* Sidebar & Layout */
+        .sidebar { position: fixed; top: 0; left: 0; height: 100%; width: var(--sidebar-width); background: #111827; z-index: 1000; transition: var(--transition); padding: 20px 0; }
+        .sidebar.collapsed { width: var(--sidebar-collapsed-width); }
+        .nav-list { list-style: none; padding: 0 10px; margin-top: 20px; }
+        .nav-list li a { display: flex; align-items: center; text-decoration: none; color: #9ca3af; padding: 12px; border-radius: 8px; transition: var(--transition); margin-bottom: 5px; }
+        .nav-list li a.active { background: var(--primary-color); color: white; }
+        .nav-list li a i { font-size: 22px; min-width: 50px; text-align: center; }
+
+        .main-content { position: relative; left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); transition: var(--transition); padding: 20px; }
+        .sidebar.collapsed ~ .main-content { left: var(--sidebar-collapsed-width); width: calc(100% - var(--sidebar-collapsed-width)); }
+        
+        header { background: var(--white); padding: 15px 25px; display: flex; align-items: center; justify-content: space-between; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        .toggle-btn { font-size: 24px; cursor: pointer; }
+
+        /* --- SKELETON ANIMATION --- */
+        .skeleton {
+            background-color: var(--skeleton-base);
+            background-image: linear-gradient(
+                90deg,
+                var(--skeleton-base) 0px,
+                var(--skeleton-shimmer) 40px,
+                var(--skeleton-base) 80px
+            );
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+            border-radius: 4px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        /* --- CART LAYOUT --- */
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+        }
+
+        .cart-items {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .skeleton-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skeleton-img { width: 80px; height: 80px; border-radius: 8px; flex-shrink: 0; }
+        .skeleton-info { flex-grow: 1; display: flex; flex-direction: column; gap: 10px; }
+        .skeleton-line { height: 14px; width: 60%; }
+        .skeleton-line.short { width: 30%; }
+        .skeleton-price { height: 20px; width: 80px; margin-left: auto; }
+
+        /* Summary Sidebar */
+        .cart-summary {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .summary-title { height: 24px; width: 100px; margin-bottom: 25px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .summary-btn { height: 45px; width: 100%; border-radius: 8px; margin-top: 20px; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 992px) {
+            .cart-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { left: -100%; }
+            .sidebar.active { left: 0; }
+            .main-content { left: 0; width: 100%; }
+            .skeleton-img { width: 60px; height: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo-content" style="display: flex; align-items: center; padding: 0 20px; color: white;">
+            <i class='bx bxs-bolt' style="font-size: 28px; color: var(--primary-color); margin-right: 10px;"></i>
+            <span class="logo_name" style="font-weight: 700; font-size: 20px;">DevDash</span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="#"><i class='bx bx-grid-alt'></i><span class="link_name">Overview</span></a></li>
+            <li><a href="#" class="active"><i class='bx bx-shopping-bag'></i><span class="link_name">My Cart</span></a></li>
+            <li><a href="#"><i class='bx bx-box'></i><span class="link_name">Inventory</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <div class="toggle-btn" id="btn"><i class='bx bx-menu'></i></div>
+            <div class="user"><strong>G. Bhor</strong></div>
+        </header>
+
+        <main>
+            <div class="cart-grid">
+                <div class="cart-items">
+                    <div class="skeleton" style="height: 25px; width: 150px; margin-bottom: 25px;"></div>
+                    
+                    <div class="skeleton-item">
+                        <div class="skeleton skeleton-img"></div>
+                        <div class="skeleton-info">
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line short"></div>
+                        </div>
+                        <div class="skeleton skeleton-price"></div>
+                    </div>
+
+                    <div class="skeleton-item">
+                        <div class="skeleton skeleton-img"></div>
+                        <div class="skeleton-info">
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line short"></div>
+                        </div>
+                        <div class="skeleton skeleton-price"></div>
+                    </div>
+
+                    <div class="skeleton-item" style="border: none;">
+                        <div class="skeleton skeleton-img"></div>
+                        <div class="skeleton-info">
+                            <div class="skeleton skeleton-line"></div>
+                            <div class="skeleton skeleton-line short"></div>
+                        </div>
+                        <div class="skeleton skeleton-price"></div>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="skeleton summary-title"></div>
+                    <div class="summary-row">
+                        <div class="skeleton" style="height: 14px; width: 60px;"></div>
+                        <div class="skeleton" style="height: 14px; width: 40px;"></div>
+                    </div>
+                    <div class="summary-row">
+                        <div class="skeleton" style="height: 14px; width: 80px;"></div>
+                        <div class="skeleton" style="height: 14px; width: 40px;"></div>
+                    </div>
+                    <div style="border-top: 1px solid var(--border-color); margin: 15px 0; padding-top: 15px;" class="summary-row">
+                        <div class="skeleton" style="height: 18px; width: 70px;"></div>
+                        <div class="skeleton" style="height: 18px; width: 60px;"></div>
+                    </div>
+                    <div class="skeleton summary-btn"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const btn = document.querySelector("#btn");
+        const sidebar = document.querySelector(".sidebar");
+
+        btn.onclick = function() {
+            if (window.innerWidth > 768) {
+                sidebar.classList.toggle("collapsed");
+            } else {
+                sidebar.classList.toggle("active");
+            }
+        };
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener("click", function(e) {
+            if (window.innerWidth <= 768) {
+                if (!sidebar.contains(e.target) && !btn.contains(e.target) && sidebar.classList.contains("active")) {
+                    sidebar.classList.remove("active");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

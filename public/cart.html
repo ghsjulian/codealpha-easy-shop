@@ -47,131 +47,12 @@
                 <div class="cart-grid">
                     <!-- Cart Items (Static) -->
                     <div class="cart-items" id="cart-items">
-                        <!-- Item 1 -->
-                        <div class="cart-item" id="item-1">
-                            <img
-                                src="https://picsum.photos/id/20/600/400"
-                                alt="Wireless Headphones"
-                            />
-                            <div class="cart-item-info">
-                                <h4>Wireless Headphones</h4>
-                                <p>$79.99</p>
-                            </div>
-                            <div class="quantity-control">
-                                <button onclick="changeQuantity(1, -1)">
-                                    –
-                                </button>
-                                <input
-                                    type="text"
-                                    id="qty-1"
-                                    value="1"
-                                    readonly
-                                />
-                                <button onclick="changeQuantity(1, 1)">
-                                    +
-                                </button>
-                            </div>
-                            <div class="item-total" id="total-1">$79.99</div>
-                            <button class="remove-btn" onclick="removeItem(1)">
-                                ✕
-                            </button>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div class="cart-item" id="item-2">
-                            <img
-                                src="https://picsum.photos/id/29/600/400"
-                                alt="Smart Watch"
-                            />
-                            <div class="cart-item-info">
-                                <h4>Smart Watch Series X</h4>
-                                <p>$199.99</p>
-                            </div>
-                            <div class="quantity-control">
-                                <button onclick="changeQuantity(2, -1)">
-                                    –
-                                </button>
-                                <input
-                                    type="text"
-                                    id="qty-2"
-                                    value="1"
-                                    readonly
-                                />
-                                <button onclick="changeQuantity(2, 1)">
-                                    +
-                                </button>
-                            </div>
-                            <div class="item-total" id="total-2">$199.99</div>
-                            <button class="remove-btn" onclick="removeItem(2)">
-                                ✕
-                            </button>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div class="cart-item" id="item-3">
-                            <img
-                                src="https://picsum.photos/id/1005/600/400"
-                                alt="Floral Summer Dress"
-                            />
-                            <div class="cart-item-info">
-                                <h4>Floral Summer Dress</h4>
-                                <p>$39.99</p>
-                            </div>
-                            <div class="quantity-control">
-                                <button onclick="changeQuantity(3, -1)">
-                                    –
-                                </button>
-                                <input
-                                    type="text"
-                                    id="qty-3"
-                                    value="2"
-                                    readonly
-                                />
-                                <button onclick="changeQuantity(3, 1)">
-                                    +
-                                </button>
-                            </div>
-                            <div class="item-total" id="total-3">$79.98</div>
-                            <button class="remove-btn" onclick="removeItem(3)">
-                                ✕
-                            </button>
-                        </div>
-
-                        <!-- Item 4 -->
-                        <div class="cart-item" id="item-4">
-                            <img
-                                src="https://picsum.photos/id/101/600/400"
-                                alt="Portable Bluetooth Speaker"
-                            />
-                            <div class="cart-item-info">
-                                <h4>Portable Bluetooth Speaker</h4>
-                                <p>$49.99</p>
-                            </div>
-                            <div class="quantity-control">
-                                <button onclick="changeQuantity(4, -1)">
-                                    –
-                                </button>
-                                <input
-                                    type="text"
-                                    id="qty-4"
-                                    value="1"
-                                    readonly
-                                />
-                                <button onclick="changeQuantity(4, 1)">
-                                    +
-                                </button>
-                            </div>
-                            <div class="item-total" id="total-4">$49.99</div>
-                            <button class="remove-btn" onclick="removeItem(4)">
-                                ✕
-                            </button>
-                        </div>
-                    </div>
+                        
+</div>
 
                     <!-- Cart Summary -->
                     <div class="cart-summary">
                         <h3>Order Summary</h3>
-
                         <div class="summary-row">
                             <span>Subtotal</span>
                             <span id="subtotal"></span>
@@ -211,24 +92,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- Empty Cart Message (hidden by default) -->
-                <div id="empty-cart" class="empty-cart">
-                    <h3>Your cart is empty</h3>
-                    <p style="margin: 20px 0; color: #666">
-                        Looks like you haven't added anything yet.
-                    </p>
-                    <a
-                        href="index.html"
-                        class="btn btn-primary"
-                        style="
-                            display: inline-block;
-                            width: auto;
-                            padding: 16px 40px;
-                        "
-                        >Start Shopping</a
-                    >
-                </div>
             </div>
         </section>
 
@@ -262,14 +125,12 @@
                     <a href="index.html">Home</a>
                     <a href="index.html">All Products</a>
                     <a href="cart.html">Cart</a>
-                    <a href="#">Deals</a>
                 </div>
                 <div class="footer-col">
                     <h3>Account</h3>
                     <a href="login.html">Login</a>
                     <a href="register.html">Register</a>
                     <a href="cart.html">My Orders</a>
-                    <a href="#">Wishlist</a>
                 </div>
                 <div class="footer-col">
                     <h3>Stay Updated</h3>
@@ -283,7 +144,7 @@
                             placeholder="your@email.com"
                             id="newsletter-email"
                         />
-                        <button onclick="subscribeNewsletter()">Join</button>
+                        <button>Join</button>
                     </div>
                 </div>
             </div>
@@ -318,7 +179,6 @@
                     window.location = "login.html";
                 }
             };
-
         </script>
         <script src="js/cart.js"></script>
     </body>

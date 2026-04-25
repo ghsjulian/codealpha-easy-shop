@@ -6,6 +6,7 @@
         <title>ShopEasy - Home</title>
         <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="css/view-product.css" />
+        <link rel="stylesheet" href="css/product-view-skeleton.css" />
         <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
@@ -42,109 +43,7 @@
             <div class="container">
                 <h2>You May Also Like</h2>
                 <div class="related-grid">
-                    <!-- Static Related Card 1 -->
-                    <div class="related-card" onclick="viewProduct(2)">
-                        <img
-                            src="https://picsum.photos/id/29/600/400"
-                            alt="Smart Watch Series X"
-                        />
-                        <div class="content">
-                            <h3>Smart Watch Series X</h3>
-                            <p class="price">$199.99</p>
-                            <button
-                                style="
-                                    width: 100%;
-                                    padding: 12px;
-                                    background: #0d6efd;
-                                    color: white;
-                                    border: none;
-                                    border-radius: 12px;
-                                    font-weight: 600;
-                                    margin-top: 8px;
-                                "
-                            >
-                                Quick View
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Static Related Card 2 -->
-                    <div class="related-card" onclick="viewProduct(4)">
-                        <img
-                            src="https://picsum.photos/id/101/600/400"
-                            alt="Portable Bluetooth Speaker"
-                        />
-                        <div class="content">
-                            <h3>Portable Bluetooth Speaker</h3>
-                            <p class="price">$49.99</p>
-                            <button
-                                style="
-                                    width: 100%;
-                                    padding: 12px;
-                                    background: #0d6efd;
-                                    color: white;
-                                    border: none;
-                                    border-radius: 12px;
-                                    font-weight: 600;
-                                    margin-top: 8px;
-                                "
-                            >
-                                Quick View
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Static Related Card 3 -->
-                    <div class="related-card" onclick="viewProduct(9)">
-                        <img
-                            src="https://picsum.photos/id/1005/600/400"
-                            alt="Floral Summer Dress"
-                        />
-                        <div class="content">
-                            <h3>Floral Summer Dress</h3>
-                            <p class="price">$39.99</p>
-                            <button
-                                style="
-                                    width: 100%;
-                                    padding: 12px;
-                                    background: #0d6efd;
-                                    color: white;
-                                    border: none;
-                                    border-radius: 12px;
-                                    font-weight: 600;
-                                    margin-top: 8px;
-                                "
-                            >
-                                Quick View
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Static Related Card 4 -->
-                    <div class="related-card" onclick="viewProduct(10)">
-                        <img
-                            src="https://picsum.photos/id/1009/600/400"
-                            alt="Classic Denim Jacket"
-                        />
-                        <div class="content">
-                            <h3>Classic Denim Jacket</h3>
-                            <p class="price">$49.99</p>
-                            <button
-                                style="
-                                    width: 100%;
-                                    padding: 12px;
-                                    background: #0d6efd;
-                                    color: white;
-                                    border: none;
-                                    border-radius: 12px;
-                                    font-weight: 600;
-                                    margin-top: 8px;
-                                "
-                            >
-                                Quick View
-                            </button>
-                        </div>
-                    </div>
+                    <!-- Dynamic Products Goes Here -->
                 </div>
             </div>
         </section>
@@ -179,14 +78,12 @@
                     <a href="index.html">Home</a>
                     <a href="index.html">All Products</a>
                     <a href="cart.html">Cart</a>
-                    <a href="#">Deals</a>
                 </div>
                 <div class="footer-col">
                     <h3>Account</h3>
                     <a href="login.html">Login</a>
                     <a href="register.html">Register</a>
                     <a href="cart.html">My Orders</a>
-                    <a href="#">Wishlist</a>
                 </div>
                 <div class="footer-col">
                     <h3>Stay Updated</h3>
@@ -200,7 +97,7 @@
                             placeholder="your@email.com"
                             id="newsletter-email"
                         />
-                        <button onclick="subscribeNewsletter()">Join</button>
+                        <button>Join</button>
                     </div>
                 </div>
             </div>
@@ -240,10 +137,27 @@
             // Quantity change
             window.changeQty = function (change) {
                 const input = document.getElementById("qty-input");
+                const priceTag = document.querySelector(".detail-info .price");
+                let fixedPrice = parseInt(priceTag.getAttribute("fixed"));
+                let valPrice = parseInt(priceTag.getAttribute("val"));
+                let newPrice;
                 let qty = parseInt(input.value);
                 qty = Math.max(1, qty + change);
+
+                if (change == -1) {
+                    newPrice = valPrice - fixedPrice;
+                    if (qty == 1) {
+                        newPrice = fixedPrice;
+                    }
+                } else {
+                    if (parseInt(input.getAttribute("max")) < qty) return;
+                    newPrice = valPrice + fixedPrice;
+                }
                 if (parseInt(input.getAttribute("max")) < qty) return;
                 input.value = qty;
+                priceTag.textContent = "$" + newPrice;
+                priceTag.setAttribute("val", newPrice);
+                console.log(newPrice);
             };
         </script>
         <script src="js/view-product.js"></script>

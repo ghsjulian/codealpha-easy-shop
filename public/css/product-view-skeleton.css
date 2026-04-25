@@ -1,0 +1,67 @@
+ :root {
+            --sidebar-width: 260px;
+            --sidebar-collapsed-width: 80px;
+            --primary-color: #4361ee;
+            --bg-color: #f8f9fa;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --skeleton-base: #e2e8f0;
+            --skeleton-shimmer: #f8fafc;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+   /* --- SKELETON ANIMATION --- */
+        .skeleton {
+            background-color: var(--skeleton-base);
+            background-image: linear-gradient(90deg, var(--skeleton-base) 0px, var(--skeleton-shimmer) 40px, var(--skeleton-base) 80px);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+            border-radius: 8px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        /* --- PRODUCT DETAILS GRID --- */
+        .details-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Left side: Gallery */
+        .gallery-sk { display: flex; flex-direction: column; gap: 15px; }
+        .main-img-sk { width: 100%; aspect-ratio: 1/1; }
+        .thumb-row-sk { display: flex; gap: 10px; }
+        .thumb-sk { width: 80px; height: 80px; }
+
+        /* Right side: Info */
+        .info-sk { display: flex; flex-direction: column; gap: 20px; }
+        .badge-sk { height: 20px; width: 80px; border-radius: 20px; }
+        .title-sk { height: 35px; width: 90%; }
+        .price-sk { height: 30px; width: 120px; }
+        .desc-sk { display: flex; flex-direction: column; gap: 8px; }
+        .line-sk { height: 14px; width: 100%; }
+        .line-sk.short { width: 60%; }
+        
+        .variant-sk { display: flex; gap: 10px; margin-top: 10px; }
+        .circle-sk { width: 35px; height: 35px; border-radius: 50%; }
+
+        .btn-group-sk { display: flex; gap: 15px; margin-top: 20px; }
+        .btn-sk { height: 50px; flex: 1; border-radius: 10px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .details-container { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+    .main-content { left: 0; width: 100%; }
+            .details-container { padding: 15px; }
+            .thumb-sk { width: 60px; height: 60px; }
+        }

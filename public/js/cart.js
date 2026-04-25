@@ -1,30 +1,83 @@
 const api = "";
 const cartGrid = document.querySelector(".cart-items");
 const itemsCount = document.querySelector("#cart-items-count");
+const cartCount = document.querySelector(".cart-count");
+
+
+const updateCartCount = () => {
+    let cartList = JSON.parse(localStorage.getItem("cart")) || [];
+    cartCount.innerHTML = cartList.length;
+};
+
+const removeItem = id => {
+    let cartList = JSON.parse(localStorage.getItem("cart")) || [];
+    const item = document.querySelector(`.cart-item[index="${id}"]`);
+    if (item) {
+        item.remove();
+        itemsCount.textContent = cartList.length + " Items";
+        if (cartList?.length == 0) {
+            cartGrid.innerHTML = `<div id="empty-cart" class="empty-cart">
+                    <h3>Your cart is empty</h3>
+                    <p style="margin: 20px 0; color: #666">
+                        Looks like you haven't added anything yet.
+                    </p>
+                    <a
+                        href="/"
+                        class="btn btn-primary"
+                        style="
+                            display: inline-block;
+                            width: auto;
+                            padding: 16px 40px;
+                        "
+                        >Start Shopping</a
+                    >
+                </div>`;
+        }
+    }
+};
 
 const renderCart = () => {
     let cartList = JSON.parse(localStorage.getItem("cart")) || [];
-    if (cartList?.length == 0) return;
     let html = "";
     cartGrid.innerHTML = "";
     itemsCount.textContent = cartList.length + " Items";
+    if (cartList?.length == 0) {
+        cartGrid.innerHTML = `<div id="empty-cart" class="empty-cart">
+                    <h3>Your cart is empty</h3>
+                    <p style="margin: 20px 0; color: #666">
+                        Looks like you haven't added anything yet.
+                    </p>
+                    <a
+                        href="/"
+                        class="btn btn-primary"
+                        style="
+                            display: inline-block;
+                            width: auto;
+                            padding: 16px 40px;
+                        "
+                        >Start Shopping</a
+                    >
+                </div>`;
+        return;
+    }
+
     cartList.forEach((prod, index) => {
         html += `
-                      <div class="cart-item" id="${prod?.id}">
+                      <div class="cart-item" id="${prod?.id}" index="item-${index}">
                             <img
                                 src="${prod?.image}"
                                 alt="${prod?.name}"
                             />
                             <div class="cart-item-info">
                                 <h4>${prod?.name}</h4>
-                                <p>$${prod?.price}</p>
+                                <p id="cart-${index}">$${prod?.price}</p>
                             </div>
                             <div class="quantity-control">
                                 <button data-index="ghs-${index}" data-id="${prod?.id}" id="less">
                                     –
                                 </button>
                                 <input
-                                    type="text"
+                                    type="number"
                                     id="qty-1"
                                     value="${prod?.qty}"
                                     readonly
@@ -37,7 +90,7 @@ const renderCart = () => {
                             <span>$</span>
                             <p class="sale-price">${prod?.price}</p>
                             </div>
-                            <button id class="remove-btn" onclick="removeItem(1)">
+                            <button class="remove-btn" data-index="${index}" data-id="item-${index}">
                                 ✕
                             </button>
                         </div>
@@ -54,16 +107,19 @@ const updateTotal = () => {
         total += prod.price;
     });
     const tax = total * 0.05;
-    const finalPrice = total+tax
+    const finalPrice = total + tax;
     document.querySelector("#subtotal").textContent = "$" + total;
     document.querySelector("#grand-total").textContent =
         "$" + finalPrice.toFixed(2);
 };
 renderCart();
 updateTotal();
+updateCartCount();
 cartGrid.addEventListener("click", e => {
     const add = e.target.closest("#add");
     const less = e.target.closest("#less");
+    const remove = e.target.closest(".remove-btn");
+
     if (add) {
         let id = add.dataset.id;
         let index = add.dataset.index;
@@ -77,12 +133,45 @@ cartGrid.addEventListener("click", e => {
                 prod.qty += 1;
                 add.parentElement.querySelector("#qty-1").value = prod.qty;
                 document.querySelector("#ghs-" + index).textContent =
-                    prod.price;
+                    "$" + prod.price;
+                document.querySelector("#cart-" + index).textContent =
+                    "$" + prod.price;
                 cartList[index] = prod;
                 localStorage.setItem("cart", JSON.stringify(cartList));
                 updateTotal();
             }
         });
-        console.log(cartList);
+    }
+    if (less) {
+        let id = less.dataset.id;
+        let index = less.dataset.index;
+        let cartList = JSON.parse(localStorage.getItem("cart")) || [];
+
+        cartList.filter((prod, index) => {
+            if (prod.id === id) {
+                if (prod.qty <= 1) return;
+
+                let price = prod.price - prod.salePrice;
+                prod.price = price;
+                prod.qty -= 1;
+                less.parentElement.querySelector("#qty-1").value = prod.qty;
+                document.querySelector("#ghs-" + index).textContent =
+                    "$" + prod.price;
+                document.querySelector("#cart-" + index).textContent =
+                    "$" + prod.price;
+                cartList[index] = prod;
+                localStorage.setItem("cart", JSON.stringify(cartList));
+                updateTotal();
+            }
+        });
+    }
+    if (remove) {
+        let cartList = JSON.parse(localStorage.getItem("cart")) || [];
+        const id = remove.dataset.id;
+        const index = Number(remove.dataset.index);
+        const newCart = cartList.filter((_, idx) => idx !== index);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+        removeItem(id);
+        updateCartCount();
     }
 });
