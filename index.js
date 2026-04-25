@@ -36,6 +36,7 @@ app.use(compression());
 
 app.use("/api/v1", require("./routes/auth.routes"));
 app.use("/api/v1", require("./routes/product.routes"));
+app.use("/api/v1", require("./routes/order.routes"));
 
 // Main route
 app.get("/", (req, res) => {

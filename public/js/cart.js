@@ -3,6 +3,26 @@ const cartGrid = document.querySelector(".cart-items");
 const itemsCount = document.querySelector("#cart-items-count");
 const cartCount = document.querySelector(".cart-count");
 
+const calculateFinalPrice = (
+    total,
+    taxPercent,
+    discountPercent,
+    shipping = 0
+) => {
+    const taxAmount = (total * taxPercent) / 100;
+    const priceAfterTax = total + taxAmount;
+    const discountAmount = (priceAfterTax * discountPercent) / 100;
+    const finalPrice = priceAfterTax - discountAmount + shipping;
+
+    return {
+        subtotal: total,
+        tax: taxAmount,
+        priceAfterTax,
+        discount: discountAmount,
+        shipping: shipping === 0 ? "FREE" : shipping,
+        finalPrice: Number(finalPrice.toFixed(2))
+    };
+};
 
 const updateCartCount = () => {
     let cartList = JSON.parse(localStorage.getItem("cart")) || [];
@@ -106,11 +126,12 @@ const updateTotal = () => {
     cartList.forEach(prod => {
         total += prod.price;
     });
-    const tax = total * 0.05;
-    const finalPrice = total + tax;
-    document.querySelector("#subtotal").textContent = "$" + total;
+    const prices = calculateFinalPrice(total, 10, 10, 0);
+    document.querySelector("#tax").textContent = "$" + prices.tax;
+    document.querySelector("#discount").textContent = "$" + prices.discount;
+    document.querySelector("#subtotal").textContent = "$" + prices.subtotal;
     document.querySelector("#grand-total").textContent =
-        "$" + finalPrice.toFixed(2);
+        "$" + prices.finalPrice
 };
 renderCart();
 updateTotal();
